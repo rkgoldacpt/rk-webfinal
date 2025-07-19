@@ -3,25 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gold-gem-invoice-offline</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+    <title>RK Jewellers Invoice App</title>
+    <meta name="description" content="Invoice management system for RK Jewellers" />
+    <meta name="author" content="RK Jewellers" />
 
-    <meta property="og:title" content="gold-gem-invoice-offline" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#BF953F" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="RK Jewellers" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-TileColor" content="#BF953F" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <!-- PWA Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon-16x16.png" />
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="RK Jewellers Invoice App" />
+    <meta property="og:description" content="Invoice management system for RK Jewellers" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image" content="/icon-512x512.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    <script type="module" crossorigin src="/assets/index-CwO3OUHU.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-or26gyr2.css">
+    <meta name="twitter:title" content="RK Jewellers Invoice App" />
+    <meta name="twitter:description" content="Invoice management system for RK Jewellers" />
+    <meta name="twitter:image" content="/icon-512x512.png" />
+    <script type="module" crossorigin src="/assets/index-Bl_X6j8S.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-DetSAscD.js">
+    <link rel="modulepreload" crossorigin href="/assets/ui-DF6nW1zH.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DW-UbzGw.css">
   </head>
 
   <body>
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

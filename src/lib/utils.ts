@@ -61,7 +61,7 @@ export function formatDate(date: number | Date): string {
 // Generate printable invoice HTML
 export function generateInvoiceHTML(invoice: Invoice, customer: Customer): string {
   const invoiceDate = formatDate(invoice.invoiceDate);
-
+  
   // Calculate item details with formatting
   const itemsHTML = invoice.items.map((item, index) => {
     const netWeight = calculateNetWeight(item.grossWeight, item.wastage);
@@ -133,13 +133,14 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
             height: 6in;
             max-width: 4in;
             max-height: 6in;
-            overflow: hidden;
           }
           .invoice-content {
             display: flex;
             flex-direction: column;
             height: 6in;
-            width: 4in;
+            width: 3.85in;
+            max-width: 3.85in;
+            margin: 0 auto;
             transform-origin: top left;
             page-break-inside: avoid;
             page-break-before: avoid;
@@ -154,7 +155,7 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
         body {
           font-family: 'Segoe UI', Arial, sans-serif;
           margin: 0;
-          padding: 4px;
+          padding: 1px;
           color: #222;
           background: #fff;
           min-height: 6in;
@@ -183,7 +184,7 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
         }
         .invoice-header {
           text-align: center;
-          margin-bottom: 6px;
+          margin-bottom: 2px;
           position: relative;
         }
         .serial-badge {
@@ -199,13 +200,13 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
           box-shadow: 0 1px 4px rgba(191,149,63,0.12);
         }
         .logo-img {
-          max-width: 32px;
-          max-height: 32px;
-          margin: 0 auto 2px auto;
+          max-width: 24px;
+          max-height: 24px;
+          margin: 0 auto 1px auto;
           display: block;
         }
         .logo {
-          font-size: 12px;
+          font-size: 10px;
           font-weight: bold;
           color: #BF953F;
           letter-spacing: 1px;
@@ -215,32 +216,32 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
           color: #666;
         }
         .invoice-title {
-          font-size: 10px;
-          margin: 4px 0;
+          font-size: 9px;
+          margin: 2px 0;
           border-bottom: 1px solid #ddd;
-          padding-bottom: 2px;
+          padding-bottom: 1px;
           color: #BF953F;
           font-weight: 600;
         }
         .customer-info {
           display: flex;
           justify-content: space-between;
-          margin-bottom: 4px;
+          margin-bottom: 2px;
         }
         .customer-details, .invoice-details {
           width: 48%;
         }
         .invoice-details p {
-          margin: 2px 0;
+          margin: 1px 0;
         }
         table {
           width: 100%;
           border-collapse: collapse;
-          margin-bottom: 4px;
+          margin-bottom: 2px;
         }
         th, td {
           border: 1px solid #ddd;
-          padding: 2px;
+          padding: 1px;
           text-align: left;
           font-size: 8px;
         }
@@ -255,7 +256,7 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
         .totals-row {
           display: flex;
           justify-content: space-between;
-          padding: 2px 0;
+          padding: 1px 0;
           border-bottom: 1px solid #eee;
           font-size: 8px;
         }
@@ -266,7 +267,7 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
           color: #BF953F;
         }
         .footer {
-          margin-top: 6px;
+          margin-top: 12px;
           display: flex;
           justify-content: space-between;
         }
@@ -274,22 +275,24 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
           width: 48%;
         }
         .signature-line {
-          margin-top: 6px;
-          border-top: 1px solid #ddd;
-          padding-top: 1px;
+          margin-top: 28px;
+          border-top: 1px solid #bbb;
+          padding-top: 2px;
+          min-height: 18px;
+          background: repeating-linear-gradient(180deg, transparent, transparent 14px, #eee 14px, #eee 15px);
         }
         .payment-row {
           display: flex;
           justify-content: space-between;
-          margin-bottom: 2px;
-          padding: 2px;
+          margin-bottom: 1px;
+          padding: 1px;
           border: 1px solid #eee;
           border-radius: 1px;
           font-size: 8px;
         }
         .payment-info {
           display: flex;
-          gap: 2px;
+          gap: 1px;
         }
         .payment-date {
           color: #666;
@@ -324,75 +327,76 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
       </script>
     </head>
     <body>
+      <div style="text-align:center;font-size:13px;font-weight:bold;color:#BF953F;letter-spacing:1px;margin-bottom:2px;">Estimation Bill</div>
       <img src="${watermarkImg}" class="watermark-img" alt="Watermark" />
       <div class="invoice-content">
-        <div class="invoice-header">
+      <div class="invoice-header">
           <div class="serial-badge">Serial No: ${invoice.serialNumber ?? 'N/A'}</div>
           <img src="${logoImg}" alt="Logo" class="logo-img" onerror="this.style.display='none'" />
-          <div class="logo">RK Jewellers</div>
-          <div class="shop-address">Main Road, Achampet, Telangana</div>
-          <div class="shop-contact">Tel: +91 9440370408, +91 9490324969</div>
+        <div class="logo">RK Jewellers</div>
+        <div class="shop-address">Main Road, Achampet, Telangana</div>
+        <div class="shop-contact">Tel: +91 9440370408, +91 9490324969</div>
+      </div>
+      <div class="invoice-title">INVOICE</div>
+      <div class="customer-info">
+        <div class="customer-details">
+          <h3>Customer Details</h3>
+          <p><strong>Name:</strong> ${customer.name}</p>
+          <p><strong>Mobile:</strong> ${customer.mobile}</p>
+          ${customer.address ? `<p><strong>Address:</strong> ${customer.address}</p>` : ''}
         </div>
-        <div class="invoice-title">INVOICE</div>
-        <div class="customer-info">
-          <div class="customer-details">
-            <h3>Customer Details</h3>
-            <p><strong>Name:</strong> ${customer.name}</p>
-            <p><strong>Mobile:</strong> ${customer.mobile}</p>
-            ${customer.address ? `<p><strong>Address:</strong> ${customer.address}</p>` : ''}
-          </div>
-          <div class="invoice-details">
-            <h3>Invoice Details</h3>
-            <p><strong>Invoice #:</strong> ${invoice.id.substring(0, 8).toUpperCase()}</p>
-            <p><strong>Date:</strong> ${invoiceDate}</p>
-          </div>
+        <div class="invoice-details">
+          <h3>Invoice Details</h3>
+          <p><strong>Invoice #:</strong> ${invoice.id.substring(0, 8).toUpperCase()}</p>
+          <p><strong>Date:</strong> ${invoiceDate}</p>
         </div>
-        <h3>Item Details</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>S.No</th>
-              <th>Item</th>
-              <th>Gross Weight</th>
-              <th>Wastage</th>
-              <th>Net Weight</th>
-              <th>Gold Rate</th>
-              <th>Lab Rate</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${itemsHTML}
-          </tbody>
-        </table>
-        <div class="payment-details">
-          <h3>Payment Details</h3>
-          ${paymentDetailsHTML}
+      </div>
+      <h3>Item Details</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Item</th>
+            <th>Gross Weight</th>
+            <th>Wastage</th>
+            <th>Net Weight</th>
+            <th>Gold Rate</th>
+            <th>Lab Rate</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${itemsHTML}
+        </tbody>
+      </table>
+      <div class="payment-details">
+        <h3>Payment Details</h3>
+        ${paymentDetailsHTML}
+      </div>
+      <div class="totals">
+        <div class="totals-row">
+          <span>Total Amount:</span>
+          <span>${formatCurrency(invoice.totalAmount)}</span>
         </div>
-        <div class="totals">
-          <div class="totals-row">
-            <span>Total Amount:</span>
-            <span>${formatCurrency(invoice.totalAmount)}</span>
-          </div>
-          <div class="totals-row">
-            <span>Paid Amount:</span>
-            <span>${formatCurrency(invoice.payments.reduce((sum, p) => p.mode !== 'DISCOUNT' ? sum + p.amount : sum, 0))}</span>
-          </div>
-          <div class="totals-row">
-            <span>Discount:</span>
-            <span class="discount-amount">${formatCurrency(invoice.payments.reduce((sum, p) => p.mode === 'DISCOUNT' ? sum + p.amount : sum, 0))}</span>
-          </div>
-          <div class="totals-row grand-total">
-            <span>Due Amount:</span>
-            <span>${formatCurrency(invoice.dueAmount)}</span>
-          </div>
+        <div class="totals-row">
+          <span>Paid Amount:</span>
+          <span>${formatCurrency(invoice.payments.reduce((sum, p) => p.mode !== 'DISCOUNT' ? sum + p.amount : sum, 0))}</span>
         </div>
-        <div class="footer">
-          <div class="signature">
-            <div class="signature-line">Customer Signature</div>
-          </div>
-          <div class="signature">
-            <div class="signature-line">Authorized Signature</div>
+        <div class="totals-row">
+          <span>Discount:</span>
+          <span class="discount-amount">${formatCurrency(invoice.payments.reduce((sum, p) => p.mode === 'DISCOUNT' ? sum + p.amount : sum, 0))}</span>
+        </div>
+        <div class="totals-row grand-total">
+          <span>Due Amount:</span>
+          <span>${formatCurrency(invoice.dueAmount)}</span>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="signature">
+          <div class="signature-line">Customer Signature</div>
+        </div>
+        <div class="signature">
+          <div class="signature-line">Authorized Signature</div>
           </div>
         </div>
       </div>
