@@ -1,0 +1,107 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 98%;
+    --foreground: 30 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 10%;
+
+    --primary: 36 100% 50%;
+    --primary-foreground: 30 10% 10%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 30 10% 10%;
+
+    --muted: 35 10% 90%;
+    --muted-foreground: 30 10% 40%;
+
+    --accent: 36 80% 80%;
+    --accent-foreground: 30 10% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 36 40% 80%;
+    --input: 36 40% 80%;
+    --ring: 36 100% 50%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, #FFD700, #FFC107, #BF953F, #FFDB58);
+    background-size: 200% 200%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  .jewel-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .jewel-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right, 
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0) 40%,
+      rgba(255,255,255,0.4) 50%,
+      rgba(255,255,255,0) 60%,
+      rgba(255,255,255,0) 100%
+    );
+    transition: all 0.5s ease;
+    transform: rotate(45deg);
+  }
+
+  .jewel-shine:hover::after {
+    left: 100%;
+    top: 100%;
+  }
+
+  .card-shadow {
+    box-shadow: 0 10px 30px -5px rgba(191, 149, 63, 0.15);
+  }
+}
+
+@layer utilities {
+  .gold-text {
+    background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
