@@ -190,9 +190,9 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
         .serial-badge {
           display: inline-block;
           background: #BF953F;
-          color: #fff;
+          color: #111;
           font-weight: bold;
-          font-size: 10px;
+          font-size: 13px;
           border-radius: 12px;
           padding: 2px 10px;
           margin-bottom: 2px;
@@ -200,19 +200,28 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
           box-shadow: 0 1px 4px rgba(191,149,63,0.12);
         }
         .logo-img {
-          max-width: 24px;
-          max-height: 24px;
-          margin: 0 auto 1px auto;
+          max-width: 48px;
+          max-height: 48px;
+          margin: 0 auto 3px auto;
           display: block;
+          border-radius: 8px;
+          border: none;
         }
         .logo {
-          font-size: 10px;
-          font-weight: bold;
+          font-size: 18px;
+          font-weight: 900;
           color: #BF953F;
-          letter-spacing: 1px;
+          letter-spacing: 2px;
+          text-shadow: 0 1px 4px #fff,0 0 2px #BF953F66;
         }
         .shop-address {
-          font-size: 7px;
+          font-size: 12px;
+          color: #333;
+          font-weight: 700;
+          margin-bottom: 2px;
+        }
+        .shop-contact {
+          font-size: 8px;
           color: #666;
         }
         .invoice-title {
@@ -327,7 +336,7 @@ export function generateInvoiceHTML(invoice: Invoice, customer: Customer): strin
       </script>
     </head>
     <body>
-      <div style="text-align:center;font-size:13px;font-weight:bold;color:#BF953F;letter-spacing:1px;margin-bottom:2px;">Estimation Bill</div>
+      <div style="text-align:center;font-size:10px;font-weight:900;color:#BF953F;letter-spacing:2px;margin-bottom:5px;text-shadow:0 1px 4px #fff,0 0 2px #BF953F66;">Estimation Bill</div>
       <img src="${watermarkImg}" class="watermark-img" alt="Watermark" />
       <div class="invoice-content">
       <div class="invoice-header">
